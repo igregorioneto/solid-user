@@ -10,6 +10,11 @@ class UserRepository implements IUserRepository {
     this.users = [];
   }
 
+  findByEmail(email: string): boolean {
+    const user = this.users.find((user) => user.email === email);
+    return user?.admin === true;
+  }
+
   public static getInstance(): UserRepository {
     if (!UserRepository.INSTANCE) {
       UserRepository.INSTANCE = new UserRepository();
